@@ -211,7 +211,8 @@ class YoutubeLoader(BaseLoader):
 
         transcript_pieces = transcript.fetch()
 
-        transcript = " ".join([t["text"].strip(" ") for t in transcript_pieces])
+        # transcript = " ".join([t["text"].strip(" ") for t in transcript_pieces])
+        transcript = [(t["start"], t["duration"], t["text"]) for t in transcript_pieces]
 
         return [Document(page_content=transcript, metadata=metadata)]
 
